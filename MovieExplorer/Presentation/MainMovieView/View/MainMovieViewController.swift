@@ -55,7 +55,7 @@ final class MainMovieViewController: UIViewController {
         super.viewDidLoad()
         setDelegate()
         bind()
-        setupNavigationBar()
+        setNavigationBar()
         setLayout()
     }
     
@@ -65,7 +65,7 @@ final class MainMovieViewController: UIViewController {
         movieCollectionView.dataSource = self
     }
     
-    private func setupNavigationBar() {
+    private func setNavigationBar() {
         title = "Movie Explorer"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
@@ -90,7 +90,6 @@ final class MainMovieViewController: UIViewController {
         
         output.selectedMovie
             .drive(onNext: { movie in
-                print("선택 영화:", movie.title)
             })
             .disposed(by: disposeBag)
         

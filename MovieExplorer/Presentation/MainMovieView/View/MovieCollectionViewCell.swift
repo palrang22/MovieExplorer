@@ -107,7 +107,7 @@ final class MovieCollectionViewCell: UICollectionViewCell {
         
         scoreLabel.snp.makeConstraints {
             $0.leading.equalTo(starIconView.snp.trailing).offset(6)
-            $0.centerY.equalTo(starIconView.snp.centerY)
+            $0.centerY.equalTo(starIconView)
         }
     }
 }
