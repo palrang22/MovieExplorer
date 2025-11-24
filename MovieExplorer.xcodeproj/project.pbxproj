@@ -12,10 +12,12 @@
 		CCEEDDE52ED4682B00FA5A98 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CCEEDDE42ED4682B00FA5A98 /* Then */; };
 		CCEEDDE82ED4684000FA5A98 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CCEEDDE72ED4684000FA5A98 /* SnapKit */; };
 		CCEEDDEB2ED4685600FA5A98 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CCEEDDEA2ED4685600FA5A98 /* Kingfisher */; };
+		CCF4623B2ED4A36E00F3AC4F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CCF4623A2ED4A36800F3AC4F /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CCF461F12ED46D5000F3AC4F /* MovieExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCF4623A2ED4A36800F3AC4F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -58,6 +60,7 @@
 		CCEED82B2ED43B8600FA5A98 = {
 			isa = PBXGroup;
 			children = (
+				CCF4623A2ED4A36800F3AC4F /* README.md */,
 				CCEED8362ED43B8600FA5A98 /* MovieExplorer */,
 				CCF461F12ED46D5000F3AC4F /* MovieExplorer.app */,
 			);
@@ -138,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF4623B2ED4A36E00F3AC4F /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
