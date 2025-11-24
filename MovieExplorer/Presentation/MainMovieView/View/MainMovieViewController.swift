@@ -59,6 +59,10 @@ final class MainMovieViewController: UIViewController {
         setLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setNavigationBar()
+    }
+    
     //MARK: Methods
     private func setDelegate() {
         movieCollectionView.delegate = self
@@ -89,9 +93,16 @@ final class MainMovieViewController: UIViewController {
             .disposed(by: disposeBag)
         
         output.selectedMovie
-            .drive(onNext: { movie in
+            .drive(onNext: { [weak self] movie in
+                guard let self else { return }
+                
+                let viewModel = DetailMovieViewModel(movieEntity: movie)
+                let detailVC = DetailMovieViewController(viewModel: viewModel)
+                
+                self.navigationController?.pushViewController(detailVC, animated: true)
             })
             .disposed(by: disposeBag)
+        
         
         output.error
             .drive(onNext: { message in

@@ -14,7 +14,10 @@ import Then
 
 
 final class DetailMovieViewController: UIViewController {
+    
     //MARK: Properties
+    private let viewModel: DetailMovieViewModel
+    private let disposeBag = DisposeBag()
     
     //MARK: UI Components
     private let imageView = UIImageView().then {
@@ -33,7 +36,7 @@ final class DetailMovieViewController: UIViewController {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 20, weight: .semibold)
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
         $0.textColor = .black
         $0.numberOfLines = 2
     }
@@ -60,8 +63,9 @@ final class DetailMovieViewController: UIViewController {
     }
     
     private let overviewLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
-        $0.textColor = .black
+        $0.font = .systemFont(ofSize: 18, weight: .regular)
+        $0.textColor = .darkGray
+        $0.numberOfLines = 0
     }
     
     private lazy var closeButton = UIButton().then {
@@ -74,7 +78,8 @@ final class DetailMovieViewController: UIViewController {
     }
     
     //MARK: init
-    init() {
+    init(viewModel: DetailMovieViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -92,27 +97,53 @@ final class DetailMovieViewController: UIViewController {
     
     //MARK: Methods
     private func setNavigationBar() {
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.title = "상세보기"
+
         let backAction = UIAction { [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
         }
-        
+
         let backButton = UIBarButtonItem(
             image: UIImage(systemName: "chevron.left"),
             primaryAction: backAction
         )
-        
+        backButton.tintColor = .systemGray
+
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.title = "상세보기"
     }
     
     //MARK: Bindings
     private func bind() {
+        let input = DetailMovieViewModel.Input(
+            closeTrigger: closeButton.rx.tap.asObservable()
+        )
         
+        let output = viewModel.transform(input: input)
+        
+        output.movie
+            .drive(onNext: { [weak self] vm in
+                guard let self else { return }
+                self.titleLabel.text = vm.title
+                self.dateLabel.text = vm.date
+                self.genreLabel.text = vm.genres
+                self.scoreLabel.text = vm.score
+                self.overviewLabel.text = vm.overview
+                self.imageView.kf.setImage(with: URL(string: vm.imageURL))
+            })
+            .disposed(by: disposeBag)
+        
+        output.close
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     //MARK: Layout
     private func setLayout() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         
         [
             imageView,
@@ -137,24 +168,26 @@ final class DetailMovieViewController: UIViewController {
         
         
         imageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets)
-            $0.leading.trailing.equalTo(view.safeAreaInsets).inset(10)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            $0.height.equalTo(300)
         }
         
         containerView.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(12)
             $0.leading.trailing.equalTo(imageView)
-            $0.bottom.equalTo(view.safeAreaInsets)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-12)
         }
         
         scrollView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(closeButton.snp.top).inset(12)
+            $0.bottom.equalTo(closeButton.snp.top).offset(-12)
         }
         
         closeButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(12)
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(44)
+            $0.bottom.equalToSuperview().offset(-20)
         }
         
         contentView.snp.makeConstraints {
@@ -163,7 +196,7 @@ final class DetailMovieViewController: UIViewController {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview().inset(12)
+            $0.top.leading.trailing.equalToSuperview().inset(20)
         }
         
         dateLabel.snp.makeConstraints {

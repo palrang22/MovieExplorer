@@ -11,38 +11,6 @@ import RxCocoa
 import RxSwift
 
 
-struct MainMovieItemViewModel {
-    let imageURL: String
-    let title: String
-    let date: String
-    let score: String
-    
-    init(entity: MovieEntity) {
-        self.imageURL = entity.posterPath
-        self.title = entity.title
-        
-        if let date = entity.date {
-            self.date = DateFormatter.dateDividedByDot.string(from: date)
-        } else {
-            self.date = "-"
-        }
-        
-        if let rate = entity.rate {
-            let convertedToScore = rate * 10
-            self.score = String(format: "%.1f", convertedToScore)
-        } else {
-            self.score = "-"
-        }
-    }
-}
-
-struct MovieSection {
-    let title: String
-    let items: [MainMovieItemViewModel]
-    let entities: [MovieEntity]
-}
-
-
 final class MainMovieViewModel {
     
     //MARK: Input-Output 패턴 사용
@@ -134,4 +102,39 @@ final class MainMovieViewModel {
             error: errorRelay.asDriver(onErrorJustReturn: "")
         )
     }
+}
+
+
+//MARK: MainMovieItemViewModel, MovieSection
+
+
+struct MainMovieItemViewModel {
+    let imageURL: String
+    let title: String
+    let date: String
+    let score: String
+    
+    init(entity: MovieEntity) {
+        self.imageURL = entity.posterPath
+        self.title = entity.title
+        
+        if let date = entity.date {
+            self.date = DateFormatter.dateDividedByDot.string(from: date)
+        } else {
+            self.date = "-"
+        }
+        
+        if let rate = entity.rate {
+            let convertedToScore = rate * 10
+            self.score = String(format: "%.1f", convertedToScore)
+        } else {
+            self.score = "-"
+        }
+    }
+}
+
+struct MovieSection {
+    let title: String
+    let items: [MainMovieItemViewModel]
+    let entities: [MovieEntity]
 }
