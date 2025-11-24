@@ -36,6 +36,12 @@ struct MainMovieItemViewModel {
     }
 }
 
+struct MovieSection {
+    let title: String
+    let items: [MainMovieItemViewModel]
+    let entities: [MovieEntity]
+}
+
 
 final class MainMovieViewModel {
     
@@ -46,7 +52,7 @@ final class MainMovieViewModel {
     }
     
     struct Output {
-        let movies: Driver<[MainMovieItemViewModel]>
+        let sections: Driver<[MovieSection]>
         let selectedMovie: Driver<MovieEntity>
         let error: Driver<String>
     }
@@ -64,7 +70,7 @@ final class MainMovieViewModel {
     func transform(input: Input) -> Output {
         
         let moviesRelay = BehaviorRelay<[MovieEntity]>(value: [])
-        let selectedMovieRelay = PublishRelay<MovieEntity>()
+        let sectionsRelay = BehaviorRelay<[MovieSection]>(value: [])
         let errorRelay = PublishRelay<String>()
         
         // 최초 로딩: Usecase 실행
@@ -80,32 +86,46 @@ final class MainMovieViewModel {
             .bind(to: moviesRelay)
             .disposed(by: disposeBag)
         
-        // 최신순 정렬
-        let sortedMovies = moviesRelay
-            .map { (movies: [MovieEntity]) -> [MainMovieItemViewModel] in
-                let sorted = movies.sorted {
-                    guard let left = $0.date, let right = $1.date else {
-                        return $0.date != nil
-                    }
-                    return left > right
+        // 월별 섹션 생성
+        let sections = moviesRelay
+            .map { movies -> [MovieSection] in
+                
+                let validMovies = movies.compactMap { $0.date != nil ? $0 : nil }
+                let grouped = Dictionary(grouping: validMovies) { movie in
+                    DateFormatter.dateSection.string(from: movie.date!)
                 }
-                return sorted.map(MainMovieItemViewModel.init)
+                let sortedKeys = grouped.keys.sorted(by: >)
+
+                return sortedKeys.map { key in
+                    let entities = grouped[key]!.sorted {
+                        ($0.date ?? .distantPast) > ($1.date ?? .distantPast)
+                    }
+                    let items = entities.map(MainMovieItemViewModel.init)
+
+                    return MovieSection(
+                        title: key,
+                        items: items,
+                        entities: entities
+                    )
+                }
             }
+            .do(onNext: { sections in
+                sectionsRelay.accept(sections)
+            })
             .asDriver(onErrorJustReturn: [])
+        
         
         // 영화 선택 -> MovieEntity 전달
         let selectedMovie = input.movieSelected
-            .withLatestFrom(moviesRelay) { indexPath, movie in
-                movie[indexPath.row]
+            .withLatestFrom(sectionsRelay.asObservable()) { indexPath, sections in
+                sections[indexPath.section].entities[indexPath.row]
             }
             .asDriver(onErrorDriveWith: .empty())
         
         return Output(
-            movies: sortedMovies,
+            sections: sections,
             selectedMovie: selectedMovie,
             error: errorRelay.asDriver(onErrorJustReturn: "")
         )
     }
-    
-    //MARK: Methods
 }

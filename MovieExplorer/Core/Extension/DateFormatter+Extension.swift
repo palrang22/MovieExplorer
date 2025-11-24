@@ -18,4 +18,9 @@ extension DateFormatter {
     static let dateDividedByDot = DateFormatter().then {
         $0.dateFormat = "yyyy.MM.dd"
     }
+    
+    static let dateSection = DateFormatter().then {
+        $0.locale = Locale(identifier: "en_US")
+        $0.dateFormat = "MMMM yyyy"
+    }
 }
