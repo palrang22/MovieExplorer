@@ -1,0 +1,73 @@
+{
+  "page": 1,
+  "total_results": 8,
+  "total_pages": 1,
+  "movies": [
+    {
+      "id": 1,
+      "title": "퍼스트 라이드",
+      "release_date": "2025-10-29",
+      "overview": "끝없는 전투를 벌이는 두 주인공의 이야기로, 한국 액션스타들이 총출동한 액션 스릴러.",
+      "poster_path": "https://cdn.cgv.co.kr/cgvpomsfilm/Movie/Thumbnail/Poster/030000/30000114/30000114_320.jpg",
+      "popularity": 7.27,
+      "genre": ["액션", "스릴러"]
+    },
+    {
+      "id": 2,
+      "title": "8번 출구",
+      "release_date": "2025-10-22",
+      "overview": "무한 루프에 갇힌 지하철역에서 ‘8번 출구’를 찾아 탈출을 시도하는 공포 스릴러.",
+      "poster_path": "https://cdn.imweb.me/thumbnail/20251001/332c6244e3db6.jpg",
+      "popularity": 8.51,
+      "genre": ["공포", "스릴러"]
+    },
+    {
+      "id": 3,
+      "title": "극장판 귀멸의 칼날: 무한성편",
+      "release_date": "2025-08-22",
+      "overview": "귀살대의 마지막 연회! 강적과의 전투로 운명이 뒤바뀌는 일본 인기 애니메이션 극장판.",
+      "poster_path": "https://cdn.cgv.co.kr/cgvpomsfilm/Movie/Thumbnail/Poster/000089/89833/89833_320.jpg",
+      "popularity": 9.02,
+      "genre": ["애니메이션", "액션"]
+    },
+    {
+      "id": 4,
+      "title": "보스",
+      "release_date": "2025-10-03",
+      "overview": "조직의 차기 보스를 두고 벌이는 코믹 액션 느와르, 한국형 범죄 스토리.",
+      "poster_path": "https://cdn.cgv.co.kr/cgvpomsfilm/Movie/Thumbnail/Poster/030000/30000115/30000115_320.jpg",
+      "popularity": 8.04,
+      "genre": ["범죄", "느와르", "액션"]
+    },
+    {
+      "id": 5,
+      "title": "어쩔수가없다",
+      "release_date": "2025-09-24",
+      "overview": "",
+      "poster_path": "https://img-repov.com/repov/new-bf7d6e73-3869-42c9-ad1d-dc02698436cf.webp",
+      "popularity": null,
+      "genre": []
+    },
+    {
+      "id": 6,
+      "title": "극장판 체인소 맨: 레제편",
+      "release_date": "2025-09-24",
+      "overview": "데블 헌터로 일하는 소년 ‘덴지’는 조직의 배신으로 죽음에 내몰린 순간 전기톱 악마견 ‘포치타’와 계약해 하나가 되고, 누구도 막을 수 없는 존재 ‘체인소 맨’으로 다시 태어난다.",
+      "poster_path": "https://cdn.cgv.co.kr/cgvpomsfilm/Movie/Thumbnail/Poster/030000/30000103/30000103_320.jpg",
+      "popularity": 9.26,
+      "genre": ["액션", "공포"]
+    },
+    {
+      "id": 7,
+      "title": "하얀 차를 탄 여자",
+      "release_date": "2025-10-29",
+      "overview": "",
+      "poster_path": "https://img7.yna.co.kr/etc/inner/KR/2025/10/28/AKR20251028136700005_04_i_P4.jpg",
+      "popularity": 8.58,
+      "genre": []
+    }
+  ],
+  "status": "success",
+  "timestamp": "2025-10-30T12:00:00Z"
+}
+
