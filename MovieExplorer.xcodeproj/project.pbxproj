@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CCEED8342ED43B8600FA5A98 /* MovieExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MovieExplorer.app; path = "/Users/palrang22/Documents/Swift/MovieExplorer/build/Debug-iphoneos/MovieExplorer.app"; sourceTree = "<absolute>"; };
+		CCF461F12ED46D5000F3AC4F /* MovieExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -59,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				CCEED8362ED43B8600FA5A98 /* MovieExplorer */,
+				CCF461F12ED46D5000F3AC4F /* MovieExplorer.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,7 +90,7 @@
 				CCEEDDEA2ED4685600FA5A98 /* Kingfisher */,
 			);
 			productName = MovieExplorer;
-			productReference = CCEED8342ED43B8600FA5A98 /* MovieExplorer.app */;
+			productReference = CCF461F12ED46D5000F3AC4F /* MovieExplorer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
