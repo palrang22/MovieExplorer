@@ -15,7 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UINavigationController(rootViewController: MainMovieViewController(viewModel: MainMovieViewModel(movieUsecase: MovieUsecaseImpl(repository: MovieRepositoryImpl(jsonLoader: JsonLoader())))))
+        let factory = AppFactory()
+        window.rootViewController = factory.makeMainMovieFlow()
         window.makeKeyAndVisible()
         self.window = window
 

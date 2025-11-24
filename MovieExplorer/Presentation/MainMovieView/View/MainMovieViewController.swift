@@ -22,11 +22,15 @@ final class MainMovieViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     //MARK: UI Components
-    private lazy var movieCollectionView = UICollectionView().then {
+    private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 12
         layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 50)
+        return layout
+    }()
+
+    private lazy var movieCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).then {
         $0.backgroundColor = .clear
         $0.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
         $0.register(
@@ -168,6 +172,6 @@ extension MainMovieViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = collectionView.bounds.width
-        return CGSize(width: width, height: 140)
+        return CGSize(width: width, height: 180)
     }
 }

@@ -19,7 +19,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		CCEED8462ED43B8700FA5A98 /* Exceptions for "MovieExplorer" folder in "MovieExplorer" target */ = {
+		CCF462392ED48EB700F3AC4F /* Exceptions for "MovieExplorer" folder in "MovieExplorer" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				App/Info.plist,
@@ -32,7 +32,7 @@
 		CCEED8362ED43B8600FA5A98 /* MovieExplorer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				CCEED8462ED43B8700FA5A98 /* Exceptions for "MovieExplorer" folder in "MovieExplorer" target */,
+				CCF462392ED48EB700F3AC4F /* Exceptions for "MovieExplorer" folder in "MovieExplorer" target */,
 			);
 			path = MovieExplorer;
 			sourceTree = "<group>";
@@ -163,7 +163,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SS444RV4LU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieExplorer/Info.plist;
+				INFOPLIST_FILE = MovieExplorer/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
@@ -194,7 +194,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SS444RV4LU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieExplorer/Info.plist;
+				INFOPLIST_FILE = MovieExplorer/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;

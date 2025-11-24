@@ -89,24 +89,30 @@ final class MainMovieViewModel {
         // 월별 섹션 생성
         let sections = moviesRelay
             .map { movies -> [MovieSection] in
+                // 월별 섹션 생성을 위해 날짜값이 있는 데이터만 남겼습니다.
+                let validMovies = movies.compactMap { movie in
+                    movie.date != nil ? movie : nil
+                }
                 
-                let validMovies = movies.compactMap { $0.date != nil ? $0 : nil }
-                let grouped = Dictionary(grouping: validMovies) { movie in
+                let sortedMovies = validMovies.sorted {
+                    $0.date! > $1.date!
+                }
+                
+                let grouped = Dictionary(grouping: sortedMovies) { movie in
                     DateFormatter.dateSection.string(from: movie.date!)
                 }
-                let sortedKeys = grouped.keys.sorted(by: >)
-
-                return sortedKeys.map { key in
-                    let entities = grouped[key]!.sorted {
-                        ($0.date ?? .distantPast) > ($1.date ?? .distantPast)
+                
+                let orderedKeys: [String] = sortedMovies.reduce(into: []) { arr, movie in
+                    let key = DateFormatter.dateSection.string(from: movie.date!)
+                    if !arr.contains(key) {
+                        arr.append(key)
                     }
+                }
+                
+                return orderedKeys.map { key in
+                    let entities = grouped[key]!
                     let items = entities.map(MainMovieItemViewModel.init)
-
-                    return MovieSection(
-                        title: key,
-                        items: items,
-                        entities: entities
-                    )
+                    return MovieSection(title: key, items: items, entities: entities)
                 }
             }
             .do(onNext: { sections in

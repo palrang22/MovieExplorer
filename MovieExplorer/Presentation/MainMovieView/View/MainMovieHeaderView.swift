@@ -34,8 +34,8 @@ final class MainMovieHeaderView: UICollectionReusableView {
         
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.left.equalToSuperview().offset(16)
-            $0.bottom.equalToSuperview().inset(4)
+            $0.left.equalToSuperview().offset(10)
+            $0.bottom.equalToSuperview().inset(10)
         }
     }
 }
